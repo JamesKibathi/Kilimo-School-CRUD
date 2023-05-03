@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios"
-function AddStudent({ students }) {
+function AddStudent({ students, handleUpdate }) {
 
     const [streams, setStreams] = useState([])
     const [formData, setFormData] = useState({})
     useEffect(() => {
         fetch("http://127.0.0.1:3000/streams")
             .then(res => res.json())
-            .then(data => setStreams(data))
+            .then(data =>{ 
+                // handleUpdate()
+                setStreams(data)})
 
     }, [])
 
@@ -28,6 +30,7 @@ function AddStudent({ students }) {
         axios.post('http://localhost:3000/students', formData)
             .then(function (response) {
                 // console.log(response);
+                handleUpdate()
             })
             .catch(function (error) {
                 // console.log(error);

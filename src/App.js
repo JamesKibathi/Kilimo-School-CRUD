@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <h1>Kilimo High School</h1>
-      <AddStudent students={students} />
+      <AddStudent students={students} handleUpdate={handleUpdate} />
       <ShowStudents students={students} handleUpdate={handleUpdate} />
     </div>
   );

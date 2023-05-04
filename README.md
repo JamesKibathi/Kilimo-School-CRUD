@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 The app consumes the Kilimo CRUD App API, make sure you clone the API first and run the server before 
-running this client side. Here is the link for the API - http://
+running this client side. Here is the link for the API - [backend](https://github.com/JamesKibathi/Kilimo-CRUD---Fintech-Interview)
 
 ## Available Scripts
 

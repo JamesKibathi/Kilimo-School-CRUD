@@ -2,9 +2,19 @@ import { useEffect, useState } from "react";
 import axios from "axios"
 function ShowStudents({ students, handleFetch, handleUpdate }) {
 
-    const [items, setItems] = useState([])
-    const [james, setJames] = useState(false)
+    // const [items, setItems] = useState([])
+    const [editForm, setEditForm] = useState(false)
     const [edit, setEdit] = useState({})
+    const [streams, setStreams] = useState([])
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:3000/streams")
+            .then(res => res.json())
+            .then(data =>{ 
+                
+                setStreams(data)})
+
+    }, [])
 
     function handleDelete(id) {
 
@@ -23,7 +33,7 @@ function ShowStudents({ students, handleFetch, handleUpdate }) {
     }
 
     function updateStudent(student) {
-        setJames(true)
+        setEditForm(true)
         fetch(`http://localhost:3000/students/${student.id}`)
             .then(res => res.json())
             .then(data => setEdit(data))
@@ -51,7 +61,7 @@ console.log(edit)
               }),
           }).then(res=>res.json())
           .then(data=>{
-            setJames(false)
+            setEditForm(false)
             handleUpdate()
             console.log(data)})
 
@@ -102,7 +112,7 @@ console.log(edit)
             <br></br>
             <br></br>
             <br></br>
-            {james ?
+            {editForm ?
                 <form onSubmit={handlePatch}>
                     <label htmlFor="name">
                         Name:
@@ -112,6 +122,13 @@ console.log(edit)
                         Email:
                         <input onChange={handleChangeEdit}  value={edit.email} id="email" name="email" />
                     </label>
+                    <label>
+                    Stream:
+                    <select name="stream_id" onChange={handleChangeEdit}>
+                        {streams.map(stream => <option value={stream.id}>{stream.name}</option>)}
+                    </select>
+
+                </label>
                     <label>
                         <input type="submit" value="update" />
                     </label>

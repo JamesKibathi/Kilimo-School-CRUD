@@ -4,11 +4,12 @@ function AddStudent({ students, handleUpdate }) {
 
     const [streams, setStreams] = useState([])
     const [formData, setFormData] = useState({})
+
     useEffect(() => {
         fetch("http://127.0.0.1:3000/streams")
             .then(res => res.json())
             .then(data =>{ 
-                // handleUpdate()
+                
                 setStreams(data)})
 
     }, [])
